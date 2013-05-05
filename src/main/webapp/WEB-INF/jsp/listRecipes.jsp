@@ -8,7 +8,13 @@
 </head>
 <body>
 <c:forEach var="receita" items='${receitas}'>
-	<a href="/recipes/${receita.id}">${receita.titulo}</a><br/>
+	<a href="/recipes/${receita.oid}">${receita.titulo}</a><br/>
 </c:forEach>
+R2 - Listar Receitas
+Deve ser possivel listar receitas existentes, essa listagem deve estar ordenada
+por ordem alfabetica do titulo da receita.
+
+Na vista de listagem de
+receitas, deve aparecer sempre a ultima versao de cada receita.
 </body>
 </html>
