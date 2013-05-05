@@ -3,8 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Recipe ${receita.oid}</title>
+<title>Recipe ${receita.id}</title>
 </head>
 <body>
 	<h1>${receita.titulo}<h1/>
@@ -12,6 +13,12 @@
 	<p>${receita.problema}</p>
 	<b>Solução:</b>
 	<p>${receita.solucao}</p>
+	<b>Autor:</b>
+	<p>${receita.autor}</p>
+	<b>Tags:</b>
+	<p>${receita.tags}</p>
+	
+	<br/><br/><br/>
 R3 - Ver Receita em Detalhe
 Deve ser possivel clicar numa receita da lista de receitas, e ver essa receita em
 detalhe. Essa vista detalhe da receita deve incluir o titulo da receita, o problema

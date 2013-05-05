@@ -8,7 +8,7 @@
 </head>
 <body>
 <c:forEach var="receita" items='${receitas}'>
-	<a href="/recipes/${receita.oid}">${receita.titulo}</a><br/>
+	<a href="/recipes/${receita.id}">${receita.id} - ${receita.titulo}</a><br/>
 </c:forEach>
 R2 - Listar Receitas
 Deve ser possivel listar receitas existentes, essa listagem deve estar ordenada
