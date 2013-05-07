@@ -3,22 +3,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Recipe ${receita.id}</title>
+	<title>Receita nº ${receita.id}</title>
+	<%@ include file="/WEB-INF/jsp/common/libs.jsp" %>
 </head>
 <body>
-	<h1>${receita.titulo}<h1/>
-	<b>Problema:</b>
-	<p>${receita.problema}</p>
-	<b>Solução:</b>
-	<p>${receita.solucao}</p>
-	<b>Autor:</b>
-	<p>${receita.autor}</p>
-	<b>Tags:</b>
-	<p>${receita.tags}</p>
+<div class="container">
+	<h3>Receita ${receita.titulo}</h3>
+	<dl>
+	  <dt>Problema</dt>
+	  <dd>${receita.problema}</dd>
+	  <dt>Solução</dt>
+	  <dd>${receita.solucao}</dd>
+	  <dt>Autor</dt>
+	  <dd>${receita.autor}</dd>
+	  <dt>Tags</dt>
+	  <dd>${receita.tags}</dd>
+	  <dt>Receita criada em</dt>
+	  <dd>${receita.dataCriacaoFormatada}</dd>
+	</dl>
+<div>
 	
-	<br/><br/><br/>
+<!--	<br/><br/><br/>
 R3 - Ver Receita em Detalhe
 Deve ser possivel clicar numa receita da lista de receitas, e ver essa receita em
 detalhe. Essa vista detalhe da receita deve incluir o titulo da receita, o problema
@@ -27,6 +32,8 @@ qual o nome do autor e a respectiva data e hora (timestamp) da criacao dessa
 receita.
 
 Assim, na vista detalhada da
-receita, deve aparecer igualmente uma lista das varias versoes existentes, bem como a data em que cada uma das versoes foi editada.
+receita, deve aparecer igualmente uma lista das varias versoes existentes, bem como a data em que cada uma das versoes
+ foi editada.
+-->
 </body>
 </html>

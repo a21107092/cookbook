@@ -1,8 +1,5 @@
 # Grupo
-- 123456 David Martinho
-- 123456 David Martinho
-- 123456 David Martinho
-- 123456 David Martinho
+- 21107092 Miguel Ferreira
 
 ## Changelog
 #### Versão 1.0:

@@ -1,6 +1,10 @@
 package pt.ulht.es.cookbook.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -18,8 +22,20 @@ public class RecipeController {
   
     @RequestMapping(method=RequestMethod.GET, value="/recipes")
     public String listRecipes(Model model) {
-    	Collection<Receita> receitas = CookbookManager.getRecipes();
-    	model.addAttribute("receitas", receitas);
+    	int totalReceitas;
+		List<Receita> receitasSortedList = new ArrayList<Receita>(CookbookManager.getRecipes());
+		Collections.sort(receitasSortedList, new Receita.CreationDateComparator());
+
+    	model.addAttribute("receitas", receitasSortedList);
+    	
+    	totalReceitas = receitasSortedList.size();
+    	if (totalReceitas == 0)
+    		model.addAttribute("totalReceitas", "Nao existem receitas.");
+    	else if (totalReceitas == 1)
+    		model.addAttribute("totalReceitas", totalReceitas +  " Receita listada.");
+    	else
+    		model.addAttribute("totalReceitas", totalReceitas +  " Receitas listadas.");
+
         return "listRecipes";
     }
     
