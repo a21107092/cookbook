@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 	<head>
 		<title>Criar nova receita</title>
@@ -8,35 +9,35 @@
 		  <div class="control-group">
 		    <label class="control-label" for="titulo">Titulo</label>
 		    <div class="controls">
-		      <input type="text" id="titulo" placeholder="qq coisa" name="titulo">
+		      <input type="text" id="titulo" placeholder="Titulo da receita" name="titulo">
 		    </div>
 		  </div>
 		  
 		  <div class="control-group">
 		    <label class="control-label" for="problema">Problema</label>
 		    <div class="controls">
-		      <input type="text" id="problema" name="problema">
+		      <input type="text" id="problema" placeholder="Descrição do problema" name="problema">
 		    </div>
 		  </div>
 		  
 		  <div class="control-group">
 		    <label class="control-label" for="solucao">Solucao</label>
 		    <div class="controls">
-		      <input type="text" id="solucao" name="solucao">
+		      <input type="text" id="solucao" placeholder="Descrição da solução" name="solucao">
 		    </div>
 		  </div>
 		  
 		  <div class="control-group">
 		    <label class="control-label" for="autor">Autor</label>
 		    <div class="controls">
-		      <input type="text" id="autor" name="autor">
+		      <input type="text" id="autor" placeholder="Nome do autor" name="autor">
 		    </div>
 		  </div>
 		  
 		  <div class="control-group">
 		    <label class="control-label" for="tags">Tags</label>
 		    <div class="controls">
-		      <input type="text" id="tags" name="tags">
+		      <input type="text" id="tags" placeholder="palavras separadas por virgulas" name="tags">
 		    </div>
 		  </div>
 		  

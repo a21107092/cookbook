@@ -43,7 +43,7 @@ public class RecipeController {
     public String showRecipesCreateForm(){
     	return "createRecipe";
     }
-    
+
     @RequestMapping(method=RequestMethod.POST, value="/recipes")
     public String createRecipe(@RequestParam Map<String,String> params) {
     	String titulo = params.get("titulo");
@@ -64,6 +64,17 @@ public class RecipeController {
     	if(receita != null){
 	    	model.addAttribute("receita",receita);
 	    	return "detailedRecipe";
+    	} else {
+    		return "recipeNotFound";
+    	}
+   }
+
+    @RequestMapping(method=RequestMethod.GET, value="/editrecipe/{id}")
+    public String editRecipe(Model model, @PathVariable String id) {
+    	Receita receita = CookbookManager.getRecipe(id);
+    	if(receita != null){
+	    	model.addAttribute("receita",receita);
+	    	return "editRecipe";
     	} else {
     		return "recipeNotFound";
     	}

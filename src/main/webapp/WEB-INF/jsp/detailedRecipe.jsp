@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-	<h3>Receita ${receita.titulo}</h3>
+	<h3>Receita ${receita.id} - ${receita.titulo}</h3>
 	<dl>
 	  <dt>Problema</dt>
 	  <dd>${receita.problema}</dd>
@@ -22,8 +22,14 @@
 	  <dd>${receita.dataCriacaoFormatada}</dd>
 	</dl>
 <div>
-	
-<!--	<br/><br/><br/>
+
+<!--
+<div class="btn-group">
+  <a class="btn" href="/editrecipe/${receita.id}"><i class="icon-pencil"></i> Editar</a>
+  <a class="btn" href="/delrecipe/${receita.id}"><i class="icon-remove"></i> Eliminar</a>
+</div>
+
+	<br/><br/><br/>
 R3 - Ver Receita em Detalhe
 Deve ser possivel clicar numa receita da lista de receitas, e ver essa receita em
 detalhe. Essa vista detalhe da receita deve incluir o titulo da receita, o problema

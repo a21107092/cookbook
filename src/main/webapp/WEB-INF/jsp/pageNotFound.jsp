@@ -6,6 +6,6 @@
 	<%@ include file="/WEB-INF/jsp/common/libs.jsp" %>
 </head>
 <body>
-    This is not the page you are looking for...
+    <p>This is not the page you are looking for...</p>
 </body>
 </html>
