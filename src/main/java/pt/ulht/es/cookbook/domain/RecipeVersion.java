@@ -12,5 +12,6 @@ public class RecipeVersion extends RecipeVersion_Base {
     	setTags(tags);
     	setCreationTimestamp(new DateTime());
     }
+
     
 }

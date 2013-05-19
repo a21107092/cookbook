@@ -1,5 +1,6 @@
 package pt.ulht.es.cookbook.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,12 @@ public class RecipeController {
     @RequestMapping(method=RequestMethod.GET, value="/recipes")
     public String listRecipes(Model model) {
     	Collection<Recipe> receitas = CookbookManager.getInstance().getRecipe();
-    	model.addAttribute("receitas", receitas);
+		List<RecipeVersion> receitasSortedList = new ArrayList<RecipeVersion>();
+		for(Recipe each:receitas){
+			receitasSortedList.add(each.getLastVersion());
+		}
+//		Collections.sort(receitasSortedList, new Receita.CreationDateComparator());
+    	model.addAttribute("receitas", receitasSortedList);
         return "listRecipes";
     }
     
@@ -33,31 +39,22 @@ public class RecipeController {
     
     @RequestMapping(method=RequestMethod.POST, value="/recipes")
     public String createRecipe(@RequestParam Map<String,String> params) {
-    	String titulo = params.get("titulo");
+    	String titulo   = params.get("titulo");
     	String problema = params.get("problema");
-    	String solucao = params.get("solucao");
-    	String autor = params.get("autor");
-    	String tags = params.get("tags");
-    	
-    	System.out.println("passou criarReceita 1");
+    	String solucao  = params.get("solucao");
+    	String autor    = params.get("autor");
+    	String tags     = params.get("tags");
+
     	Recipe receita = new Recipe(titulo, problema, solucao, autor, tags);
-    	System.out.println("passou criarReceita 2");
-//return "redirect:/";    	
-    	return "redirect:/recipes/"+receita.getOid();
+		RecipeVersion versaoReceita = receita.getLastVersion();
+    	return "redirect:/recipes/"+versaoReceita.getOid();
     }
     
     @RequestMapping(method=RequestMethod.GET, value="/recipes/{id}")
     public String showRecipe(Model model, @PathVariable String id) {
-    	System.out.println("passou linha 1");
 		RecipeVersion receita = AbstractDomainObject.fromExternalId(id);
-    	System.out.println("passou linha 2");
-		//List<RecipeVersion> l = receita.getRecipeVersion();
-    	System.out.println("passou linha 3");
-		//RecipeVersion r = l.get(0);
-    	System.out.println("passou linha 4");
     	if(receita != null){
 	    	model.addAttribute("receita",receita);
-	    	System.out.println("passou linha 5");
 	    	return "detailedRecipe";
     	} else {
     		return "recipeNotFound";

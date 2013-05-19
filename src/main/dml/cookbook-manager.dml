@@ -19,6 +19,6 @@ relation CookbookManagerHasRecipe {
 }
 
 relation RecipeHasRecipeVersion {
-	Recipe        playsRole recipeHasVersion { multiplicity 1..1; }	
-	RecipeVersion playsRole recipeVersion    { multiplicity 1..*; }
+	Recipe        playsRole recipe        { multiplicity 1..1; }	
+	RecipeVersion playsRole recipeVersion { multiplicity 1..*; }
 }

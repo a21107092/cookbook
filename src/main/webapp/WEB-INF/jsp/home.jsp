@@ -11,3 +11,25 @@
 	<a href="/recipes/create">Criar nova receita</a>
 </body>
 </html>
+<!--
+<div class =container">-fluid
+<div class="row">-fluid
+<div class="span12">
+<div class=hero-unit">
+<h3>texto</h3>
+<button id="benfica-button"
+<
+
+src="js/jquery.js"
+<script type=text/javascipt">
+	$("#benfica-button").click(function(e) {
+		$("#benfica-button").text("novo texto");
+		$("this").text("novo texto");
+		$(".span12").append("<b>novo texto</b><br/>");
+		alert("sssss");
+		
+	});
+
+</script>
+
+-->
