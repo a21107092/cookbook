@@ -1,45 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Receita nº ${receita.id}</title>
+	<title>Receita nº ${receita.oid}</title>
 	<%@ include file="/WEB-INF/jsp/common/libs.jsp" %>
 </head>
 <body>
 <div class="container">
-	<h3>Receita ${receita.id} - ${receita.titulo}</h3>
+	<h3>Receita ${receita.oid} - ${receita.titulo}</h3>
 	<dl>
 	  <dt>Problema</dt>
 	  <dd>${receita.problema}</dd>
 	  <dt>Solução</dt>
-	  <dd>${receita.solucao}</dd>
+      <textarea rows="6" class="input-block-level" type="text" id="solucao" name="solucao">${receita.solucao}</textarea>
 	  <dt>Autor</dt>
 	  <dd>${receita.autor}</dd>
 	  <dt>Tags</dt>
 	  <dd>${receita.tags}</dd>
 	  <dt>Receita criada em</dt>
-	  <dd>${receita.dataCriacaoFormatada}</dd>
+	  <dd>${receita.creationTimestampFormatada}</dd>
 	</dl>
 <div>
 
-<!--
 <div class="btn-group">
-  <a class="btn" href="/editrecipe/${receita.id}"><i class="icon-pencil"></i> Editar</a>
-  <a class="btn" href="/delrecipe/${receita.id}"><i class="icon-remove"></i> Eliminar</a>
+  <a class="btn" href="/editrecipe/${receita.oid}"><i class="icon-pencil"></i> Editar</a>
 </div>
 
-	<br/><br/><br/>
-R3 - Ver Receita em Detalhe
-Deve ser possivel clicar numa receita da lista de receitas, e ver essa receita em
-detalhe. Essa vista detalhe da receita deve incluir o titulo da receita, o problema
-e a sua respectiva descricao. Deve tambem estar presente nessa vista em detalhe,
-qual o nome do autor e a respectiva data e hora (timestamp) da criacao dessa
-receita.
+</br>
+</br>
+<div class="container">
+		<table class="table table-hover">
+			<caption>Lista de versões desta receita</caption>
+				
+			<c:forEach var="receitaversao" items='${listaversoes}'>
+				<tr><td><a href="/recipes/${receitaversao.oid}">Versão de ${receitaversao.creationTimestampFormatada} (${receitaversao.titulo}) <small>(nº ${receitaversao.oid})</small></a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<p>${totalReceitas}</p>
+</div>
+	
+<!--
+<script type=text/javascipt">
+	$("#benfica-button").click(function(e)) {
+		$("#benfica-button").text("novo texto");
+		$("this").text("novo texto");
+		$(".span12").append("<b>novo texto</b><br/>");
+		alert("sssss");
+		
+	});
 
-Assim, na vista detalhada da
-receita, deve aparecer igualmente uma lista das varias versoes existentes, bem como a data em que cada uma das versoes
- foi editada.
+</script>
 -->
 </body>
 </html>
