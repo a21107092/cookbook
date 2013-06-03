@@ -29,7 +29,7 @@ public class RecipeController {
 		for(Recipe each:receitas){
 			receitasSortedList.add(each.getLastVersion());
 		}
-		Collections.sort(receitasSortedList, new RecipeVersion.CreationDateComparator());
+		Collections.sort(receitasSortedList, new RecipeVersion.TituloComparator());
     	model.addAttribute("receitas", receitasSortedList);
     	model.addAttribute("titulo", "Lista de todas as receitas");
     	
@@ -53,19 +53,21 @@ public class RecipeController {
 
     	Collection<Recipe> receitas = CookbookManager.getInstance().getRecipe();
     	List<RecipeVersion> receitasSortedList = new ArrayList<RecipeVersion>();
-//pesquisa.split(",");
+    	String p[] = pesquisa.split(",");
     	for(Recipe r:receitas){
-    		for(RecipeVersion rv:r.getRecipeVersion()){
-    			if(rv.getTitulo().contains(pesquisa)   || 
-    	    	   rv.getProblema().contains(pesquisa) ||
-    	    	   rv.getTags().contains(pesquisa)     ||
-    			   rv.getSolucao().contains(pesquisa)){
+    		// só procura na ultima versão
+    		RecipeVersion rv = r.getLastVersion();
+			for(int i=0;i<p.length;i++){
+    			if(rv.getTitulo().contains(p[i])   || 
+    	    	   rv.getProblema().contains(p[i]) ||
+    	    	   rv.getTags().contains(p[i])     ||
+    			   rv.getSolucao().contains(p[i])){
     				
     				receitasSortedList.add(rv);
     			}
     		}
 		}
-		Collections.sort(receitasSortedList, new RecipeVersion.CreationDateComparator());
+		Collections.sort(receitasSortedList, new RecipeVersion.TituloComparator());
     	model.addAttribute("receitas", receitasSortedList);
        	model.addAttribute("titulo", "Lista da pesquisa: "+pesquisa);
     	
@@ -120,18 +122,23 @@ public class RecipeController {
 		RecipeVersion receita = CookbookManager.fromExternalId(id);
 		
 		if(receita != null){
-			List<RecipeVersion> recipeList = receita.getRecipe().getRecipeVersion();
-
+	    	List<RecipeVersion> receitas = receita.getRecipe().getRecipeVersion();
+			List<RecipeVersion> receitasSortedList = new ArrayList<RecipeVersion>();
+			for(RecipeVersion each:receitas){
+				receitasSortedList.add(each);
+			}
+			Collections.sort(receitasSortedList, new RecipeVersion.CreationDateComparator());
+			
 			model.addAttribute("receita",receita);
-	    	model.addAttribute("listaversoes", recipeList);
+	    	model.addAttribute("listaversoes", receitasSortedList);
 
-	    	totalReceitas = recipeList.size();
+	    	totalReceitas = receitasSortedList.size();
 	    	if (totalReceitas == 0){
 	    		model.addAttribute("totalReceitas", "Nao existem versões desta receita.");
 	    	} else if (totalReceitas == 1){
-	    		model.addAttribute("totalReceitas", totalReceitas +  " versão da receita.");
+	    		model.addAttribute("totalReceitas", "Existe " + totalReceitas +  " versão da receita.");
 	    	} else {
-	    		model.addAttribute("totalReceitas", totalReceitas +  " versões da receitas.");
+	    		model.addAttribute("totalReceitas", "Existem " + totalReceitas +  " versões da receita.");
 	    	}
 	    	return "detailedRecipe";
     	} else {

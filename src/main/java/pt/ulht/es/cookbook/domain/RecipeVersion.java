@@ -27,10 +27,18 @@ public class RecipeVersion extends RecipeVersion_Base {
 		super.deleteDomainObject();
 	}
 
-	public static class CreationDateComparator implements Comparator<RecipeVersion> {
+	public static class TituloComparator implements Comparator<RecipeVersion> {
 
 		public int compare(RecipeVersion r1, RecipeVersion r2) {
 			return r1.getTitulo().compareToIgnoreCase(r2.getTitulo());
+		}
+
+	}
+
+	public static class CreationDateComparator implements Comparator<RecipeVersion> {
+
+		public int compare(RecipeVersion r1, RecipeVersion r2) {
+			return r2.getCreationTimestamp().compareTo(r1.getCreationTimestamp());
 		}
 
 	}

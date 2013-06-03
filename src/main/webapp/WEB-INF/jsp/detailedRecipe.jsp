@@ -33,7 +33,16 @@
 			<caption>Lista de versões desta receita</caption>
 				
 			<c:forEach var="receitaversao" items='${listaversoes}'>
-				<tr><td><a href="/recipes/${receitaversao.oid}">Versão de ${receitaversao.creationTimestampFormatada} (${receitaversao.titulo}) <small>(nº ${receitaversao.oid})</small></a></td>
+				<tr><td>
+				<c:choose>
+				<c:when test="${receitaversao.oid != receita.oid}">
+					<a href="/recipes/${receitaversao.oid}">Versão de ${receitaversao.creationTimestampFormatada} (${receitaversao.titulo}) <small>(nº ${receitaversao.oid})</small></a>
+				</c:when>
+				<c:otherwise>
+					Versão de ${receitaversao.creationTimestampFormatada} (${receitaversao.titulo}) <small>(nº ${receitaversao.oid})</small>
+				</c:otherwise>
+				</c:choose>
+				</td>
 				</tr>
 			</c:forEach>
 		</table>

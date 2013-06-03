@@ -9,8 +9,13 @@ public class Recipe extends Recipe_Base {
     }
 
 	public RecipeVersion getLastVersion() {
-		// TODO Auto-generated method stub
-		return getRecipeVersionIterator().next();
+		RecipeVersion rvRet = getRecipeVersionIterator().next();
+		
+		for(RecipeVersion rv: getRecipeVersionSet()){
+			if( rv.getCreationTimestamp().compareTo(rvRet.getCreationTimestamp())>0 )
+				rvRet = rv;
+		}
+		return rvRet;
 	}
 
 	public void delete() {
